@@ -21,17 +21,17 @@ resource "azurerm_virtual_machine" "devvm" {
 
     os_profile {
         computer_name  = "${var.COMPUTER_NAME}"
-        admin_username = "azureuser"
+        admin_username = "${var.ADMIN_USER}"
     }
 
     os_profile_linux_config {
         disable_password_authentication = true
         ssh_keys {
             path     = "/home/azureuser/.ssh/authorized_keys"
-            key_data = "ssh-rsa AAAAB3Nz{snip}hwhqT9h"
+            key_data = "${var.AKS_SSH_ADMIN_KEY}"
         }
     }
-
+    
     boot_diagnostics {
         enabled     = "true"
         storage_uri = "${azurerm_storage_account.devstorage.primary_blob_endpoint}"

@@ -33,3 +33,12 @@ variable "VIRTUAL_MACHINE" {
 variable "COMPUTER_NAME" {
   default ="default"
 }
+
+variable "ADMIN_USER" {
+    default = "default"
+}
+
+variable "AKS_SSH_ADMIN_KEY" {
+  default="default"
+}
+
