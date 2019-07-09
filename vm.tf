@@ -37,6 +37,15 @@ resource "azurerm_virtual_machine" "devvm" {
         storage_uri = "${azurerm_storage_account.devstorage.primary_blob_endpoint}"
     }
 
+    provisioner "remote-exec" {
+    inline = [
+      "apt-get update",
+      "apt install git",
+      "git clone https://github.com/ppuch/HelmCharts.git",
+      "git clone https://github.com/ppuch/ASGCloudDeployment.git"
+    ]
+  }
+
      tags = {
         environment = "${var.ENVIRONMENT}"
     }
